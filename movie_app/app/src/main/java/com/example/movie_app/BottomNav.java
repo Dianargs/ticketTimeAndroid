@@ -33,7 +33,7 @@ public class BottomNav extends AppCompatActivity {
                             selectedFragment = new MapsFragment();
                             break;
                         case R.id.nav_fav:
-                            selectedFragment = new gpsActivity();
+                            selectedFragment = new SearchFragment();
                             break;
                         case R.id.nav_mus:
                             selectedFragment = new gpsActivity();

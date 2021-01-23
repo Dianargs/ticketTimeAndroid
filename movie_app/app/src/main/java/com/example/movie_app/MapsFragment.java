@@ -197,7 +197,7 @@ public class MapsFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                               initMarker(document.getData());
+                               //initMarker(document.getData());
                             }
                         } else {
                             System.out.print("erro");
@@ -205,11 +205,11 @@ public class MapsFragment extends Fragment {
                     }
                 });
     }
-    public void initMarker(Map gp){
+    /*public void initMarker(Map gp){
         allMarkers.add(
                 gp.put(markerOptions.position(latLng).title(gp['name']));
         );
-    }
+    }*/
 
 }
 //todo -  add zoom buttons ; add markers from firebase
