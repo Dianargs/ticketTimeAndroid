@@ -1,7 +1,9 @@
 package com.example.movie_app;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,10 +19,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,6 +51,7 @@ public class SearchFragment extends Fragment {
     MaterialSearchView mMaterialSearchView;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     List<String> moviesList;
+    List<String> sitesList;
 
 
 
@@ -75,23 +80,6 @@ public class SearchFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-    // TODO: Rename and change types and number of parameters
-  /*  public static SearchFragment newInstance(String param1, String param2) {
-        SearchFragment fragment = new SearchFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }*/
-
-  /*  @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }*/
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -104,6 +92,7 @@ public class SearchFragment extends Fragment {
         mMaterialSearchView = view.findViewById(R.id.searchView);
         mMaterialSearchView.setSuggestions(cities);
         moviesList = new ArrayList<>();
+        sitesList = new ArrayList<>();
 
         //para aparecer as sugestoes
         ListView listView = view.findViewById(R.id.listView);
@@ -139,11 +128,14 @@ public class SearchFragment extends Fragment {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot doc : task.getResult()) {
                                         String mv = doc.getString("name");
+                                        String st = doc.getString("site");
                                         moviesList.add(mv);
+                                        sitesList.add(st);
 
                                         Log.d("MYTAG", "Nome" + " => " + mv);
+                                        Log.d("MYTAG", "site" + " => " + st);
                                     }
-                                    ArrayAdapter<String> arrayAdapter =  new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,moviesList);
+                                    ArrayAdapter<String> arrayAdapter =  new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,moviesList);
                                     listView.setAdapter(arrayAdapter);
 
                                 } else {
@@ -167,6 +159,16 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               String s = sitesList.get(i);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(s));
+                startActivity(browserIntent);
+
+                Log.d("SITESHIT",s);
+            }
+        });
 
         setHasOptionsMenu(true);
 
