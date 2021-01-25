@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".NewsFragment">
+
+    <Button
+        android:id="@+id/buttonPremiere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Premieres of the week"
+        android:drawableRight="@drawable/ic_new"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:backgroundTint="@color/tema"
+        android:layout_marginBottom="100dp"
+        />
+
+    <Button
+        android:id="@+id/buttonTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_top"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:text="Top 10 of the month"
+        android:backgroundTint="@color/tema"/>
+
+
+
+</LinearLayout>
