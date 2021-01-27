@@ -7,23 +7,40 @@
     android:orientation="vertical"
     tools:context=".PremiereActivity">
 
-    <TextView
-        android:id="@+id/Title_news"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Premieres of the week"
-        android:textSize="30dp"
-        android:textColor="@color/tema"/>
+    <ImageButton
+        android:id="@+id/back_premiere"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/ic_action_arrowback"
+        android:contentDescription="TODO" />
 
-    <GridView
-        android:id="@+id/grid_view"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numColumns="3"
-        android:columnWidth="200dp"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
-        android:gravity="center"
-        android:stretchMode="columnWidth"/>
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/Title_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Premieres of the week"
+            android:textSize="30sp"
+            android:textColor="@color/tema"
+            android:layout_marginBottom="15dp"/>
+
+        <GridView
+            android:id="@+id/grid_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numColumns="3"
+            android:columnWidth="200dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:gravity="center"
+            android:stretchMode="columnWidth"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

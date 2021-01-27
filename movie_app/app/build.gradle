@@ -51,8 +51,17 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:22.0.1'
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
+    implementation files('build\\YouTubeAndroidPlayerApi.jar')
+
     testImplementation 'junit:junit:4.+'
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation 'com.google.mlkit:barcode-scanning:16.1.0'
+    implementation 'com.otaliastudios:cameraview:2.6.2'
+
+    //Libraries
+    implementation 'com.karumi:dexter:5.0.0'
 }

@@ -9,7 +9,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnLogin, btnRegister;
+    Button btnLogin, btnRegister;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,23 +23,18 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openLogin();
+                intent = new Intent(view.getContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openRegister();
+                intent = new Intent(view.getContext(), RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
-    public void openLogin(){
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-    public void openRegister(){
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
+
 }

@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth auth;
     ProgressBar progressBar;
     Button btnLogin,btnRegister;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
-        // progressBar = findViewById(R.id.progressBar);
         auth = FirebaseAuth.getInstance();
         btnLogin = findViewById(R.id.btnLogin2);
         btnRegister = findViewById(R.id.btnRegisterLogin);
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                     inputPassword.setError("Password is required.");
                     return;
                 }
-                //progressBar.setVisibility(view.VISIBLE);
+
 
                 //authentication
                 auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
@@ -60,11 +60,11 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task){
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this,"Login with success.",Toast.LENGTH_SHORT).show();
-                            openMenu();
+                            intent  = new Intent(view.getContext(), BottomNav.class);
+                            startActivity(intent);
                         }
                         else{
                             Toast.makeText(LoginActivity.this,"Error!"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                            //progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -73,16 +73,10 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openRegister();
+                intent = new Intent(view.getContext(), RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
-    public void openRegister(){
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
-    public void openMenu(){
-        Intent intent  = new Intent(this, BottomNav.class);
-        startActivity(intent);
-    }
+
 }

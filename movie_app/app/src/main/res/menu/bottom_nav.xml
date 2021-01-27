@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
    <item
-        android:id="@+id/nav_home"
-       android:icon="@drawable/ic_action_bike"
-       android:title="Home"/>
+        android:id="@+id/nav_news"
+       android:icon="@drawable/ic_news"
+       android:title="News"/>
     <item
-        android:id="@+id/nav_fav"
-        android:icon="@drawable/ic_action_bike"
-        android:title="Home"/>
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_search"
+        android:title="Search"/>
     <item
-        android:id="@+id/nav_mus"
-        android:icon="@drawable/ic_action_bike"
-        android:title="Home"/>
+        android:id="@+id/nav_qrcode"
+        android:icon="@drawable/ic_qrcode"
+        android:title="QrCode"/>
     <item
-        android:id="@+id/nav_all"
-        android:icon="@drawable/ic_action_bike"
-        android:title="Home"/>
+        android:id="@+id/nav_maps"
+        android:icon="@drawable/ic_gps"
+        android:title="GPS"/>
 </menu> 

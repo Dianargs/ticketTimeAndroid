@@ -48,7 +48,7 @@ public class SearchFragment extends Fragment {
 
 
 
-    private static String[] cities = new String[]{
+    private static final String[] cities = new String[]{
             "Aveiro",
             "Beja",
             "Braga",
@@ -93,6 +93,7 @@ public class SearchFragment extends Fragment {
         ArrayAdapter<String> arrayAdapter =  new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,cities);
         listView.setAdapter(arrayAdapter);
 
+
         mMaterialSearchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
@@ -109,7 +110,6 @@ public class SearchFragment extends Fragment {
         mMaterialSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //Log.d("MinhaTag","AQUIMF");
                 //Log.d("MinhaTag",query);
                 //it's case sensitive have to change in the firestore all lower or all upper
                 //query.toLowerCaser();
@@ -126,8 +126,8 @@ public class SearchFragment extends Fragment {
                                         moviesList.add(mv);
                                         sitesList.add(st);
 
-                                        Log.d("MYTAG", "Nome" + " => " + mv);
-                                        Log.d("MYTAG", "site" + " => " + st);
+                                        //Log.d("MYTAG", "Nome" + " => " + mv);
+                                        //Log.d("MYTAG", "site" + " => " + st);
                                     }
                                     ArrayAdapter<String> arrayAdapter =  new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,moviesList);
                                     listView.setAdapter(arrayAdapter);
@@ -160,7 +160,7 @@ public class SearchFragment extends Fragment {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(s));
                 startActivity(browserIntent);
 
-                Log.d("SITESHIT",s);
+
             }
         });
 

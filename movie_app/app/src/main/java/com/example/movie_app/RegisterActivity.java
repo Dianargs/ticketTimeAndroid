@@ -21,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mEmail,mPassword,mPhone,mRepeatPassord;
     Button mRegisterBtn, mLoginBtn;
     FirebaseAuth Auth;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,8 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(RegisterActivity.this,"User Created", Toast.LENGTH_SHORT).show();
-                            openMenu();
+                            intent  = new Intent(view.getContext(),BottomNav.class);
+                            startActivity(intent);
                         }else{
                             Toast.makeText(RegisterActivity.this, "Error!"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -79,8 +81,5 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-    public void openMenu(){
-        Intent intent  = new Intent(this,MainActivity.class);
-        startActivity(intent);
-    }
+
 }

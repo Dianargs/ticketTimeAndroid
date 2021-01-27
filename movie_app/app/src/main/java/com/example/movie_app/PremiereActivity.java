@@ -3,12 +3,19 @@ package com.example.movie_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,6 +24,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +34,8 @@ public class PremiereActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     public List<String> premieresList;
     Context context;
+    ImageButton btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +43,13 @@ public class PremiereActivity extends AppCompatActivity {
         setContentView(R.layout.activity_premiere);
 
         premieresList= new ArrayList<>();
+        btn = findViewById(R.id.back_premiere);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         //getting premiereList from firebase
@@ -45,6 +62,13 @@ public class PremiereActivity extends AppCompatActivity {
                     premieresList = (List<String>) document.get("movies");
                     gridViewPre = findViewById(R.id.grid_view);
                     gridViewPre.setAdapter(new premieresAdapter(getApplicationContext()));
+
+                    gridViewPre.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                           sendData(i,premieresList);
+                        }
+                    });
                 }
             }
         });
@@ -88,5 +112,11 @@ public class PremiereActivity extends AppCompatActivity {
 
             return imageView;
         }
+    }
+    public void sendData(int position, List<String> premieresList){
+        Intent intent = new Intent(this, TicketActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("premiereList", (Serializable) premieresList);
+        startActivity(intent);
     }
 }

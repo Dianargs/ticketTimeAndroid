@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.movie_app">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +20,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Movie_app">
-        <activity android:name=".TopActivity"></activity>
+        <activity
+            android:name=".PlayVideo"
+            android:label="@string/title_activity_play_video"
+            android:theme="@style/Theme.Movie_app.NoActionBar"></activity>
+        <activity android:name=".TicketQrcodeActivity" />
+        <activity android:name=".TicketActivity" />
+        <activity android:name=".TopActivity" />
         <activity android:name=".PremiereActivity" />
 
         <meta-data
@@ -26,7 +34,6 @@
             android:value="AIzaSyCyjTeRVzAfb87NhyIjWRzKpD6MHTD68Js" />
 
         <activity android:name=".BottomNav" />
-        <activity android:name=".gpsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +43,25 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".Pop"
+            android:theme="@style/Theme.Movie_app.CustomTheme" />
+        <activity
+            android:name=".PayPop"
+            android:theme="@style/Theme.Movie_app.CustomTheme" />
+
+        <service android:name=".FMService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/bluelogo" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/tema" />
     </application>
 
 </manifest>

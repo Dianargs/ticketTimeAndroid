@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +29,7 @@ public class TopActivity extends AppCompatActivity {
     GridView gridViewTop;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     public List<String> topList;
+    ImageButton btn;
 
 
     @Override
@@ -33,6 +38,14 @@ public class TopActivity extends AppCompatActivity {
         setContentView(R.layout.activity_top);
 
         topList = new ArrayList<>();
+        btn = findViewById(R.id.back_top);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
         db.collection("News").document("top10")
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -43,6 +56,13 @@ public class TopActivity extends AppCompatActivity {
                     topList = (List<String>) document.get("movies");
                     gridViewTop = findViewById(R.id.grid_view2);
                     gridViewTop.setAdapter(new TopAdapter(getApplicationContext()));
+
+                    gridViewTop.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            sendData(i,topList);
+                        }
+                    });
                 }
             }
         });
@@ -84,5 +104,11 @@ public class TopActivity extends AppCompatActivity {
 
             return imageViewTop;
         }
+    }
+    public void sendData(int position, List<String> premieresList){
+        Intent intent = new Intent(this, TicketActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("premiereList", (Serializable) premieresList);
+        startActivity(intent);
     }
 }
